@@ -14,17 +14,17 @@ Lo script di aggiornamento del Google Form è progettato per gestire le operazio
 
 1. **Struttura del Google Spreadsheet:** Lo script richiede che il tuo foglio di lavoro di Google Spreadsheet sia strutturato in un modo specifico per funzionare correttamente. Nella prima pagina del tuo Google Spreadsheet, devi avere una tabella con le seguenti colonne e tipo di dati:
 
-   | Data disponibilità | Ora disponibilità from | Persone           |
-       |------------------- |----------------------  |------------------ |
+   | Data disponibilità | Ora disponibilità from     | Persone                               |
+   |--------------------|----------------------------|---------------------------------------|
    | (Data)             | (Orario nel formato HH:MM) | (Stringa separata da virgole di nomi) |
 
    Esempio:
 
-   | Data disponibilità | Ora disponibilità from | Persone                  |
-       |------------------- |----------------------  |-----------------------|
-   | 2024-07-01        | 16:00                 | Mario, Luigi, Peach |
-   | 2024-07-01        | 17:00                 | Mario, Luigi, Peach |
-   | 2024-07-01        | 18:00                 | Mario, Luigi, Peach |
+   | Data disponibilità | Ora disponibilità from | Persone             |
+   |--------------------|------------------------|---------------------|
+   | 2024-07-01         | 16:00                  | Mario, Luigi, Peach |
+   | 2024-07-01         | 17:00                  | Mario, Luigi, Peach |
+   | 2024-07-01         | 18:00                  | Mario, Luigi, Peach |
 
 2. **Recuperare `formId` e `sheetId`:** Questi sono gli ID univoci del tuo Google Form e Google Spreadsheet. Dovresti sostituire questi valori con i tuoi ID univoci. Puoi trovare l'ID del tuo Google Form nell'URL mentre stai modificando il form, e l'ID del Google Spreadsheet nell'URL mentre stai visualizzando il foglio di lavoro.
 
