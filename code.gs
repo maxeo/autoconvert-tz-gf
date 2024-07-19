@@ -26,17 +26,17 @@ function updateGoogleForm() {
     {label: "Coordinated Universal Time-11", minutesDiff: -660, shortString: "UTC-11:00"},
     {label: "Hawaii", minutesDiff: -600, shortString: "UTC-10:00"},
     {label: "Alaska", minutesDiff: -540, shortString: "UTC-09:00"},
-    {label: "Baja California, Pacific Time (US and Canada)", minutesDiff: -480, shortString: "UTC-08:00"},
-    {label: "Chihuahua, La Paz, Mazatlan, Arizona, Mountain Time (US and Canada)", minutesDiff: -420, shortString: "UTC-07:00"},
+    {label: "Pacific Time (US and Canada), Baja California", minutesDiff: -480, shortString: "UTC-08:00"},
+    {label: "Mountain Time (US and Canada), Chihuahua, La Paz, Mazatlan, Arizona", minutesDiff: -420, shortString: "UTC-07:00"},
     {label: "Central America, Central Time (US and Canada), Saskatchewan, Guadalajara, Mexico City, Monterey", minutesDiff: -360, shortString: "UTC-06:00"},
-    {label: "Bogota, Lima, Quito, Indiana (East), Eastern Time (US and Canada)", minutesDiff: -300, shortString: "UTC-05:00"},
+    {label: "Indiana (East), Eastern Time (US and Canada), Bogota, Lima, Quito", minutesDiff: -300, shortString: "UTC-05:00"},
     {label: "Caracas", minutesDiff: -270, shortString: "UTC-04:30"},
     {label: "Atlantic Time (Canada), Asuncion, Georgetown, La Paz, Manaus, San Juan, Cuiaba, Santiago", minutesDiff: -240, shortString: "UTC-04:00"},
     {label: "Newfoundland", minutesDiff: -210, shortString: "UTC-03:30"},
     {label: "Brasilia, Greenland, Cayenne, Fortaleza, Buenos Aires, Montevideo", minutesDiff: -180, shortString: "UTC-03:00"},
     {label: "Coordinated Universal Time-2", minutesDiff: -120, shortString: "UTC-02:00"},
     {label: "Cape Verde, Azores", minutesDiff: -60, shortString: "UTC-01:00"},
-    {label: "Casablanca, Monrovia, Reykjavik, Dublin, Edinburgh, Lisbon, London, Coordinated Universal Time", minutesDiff: 0, shortString: "UTC+00:00"},
+    {label: "Coordinated Universal Time, Casablanca, Monrovia, Reykjavik, Dublin, Edinburgh, Lisbon, London", minutesDiff: 0, shortString: "UTC+00:00"},
     {
       label: "Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna, Brussels, Copenhagen, Madrid, Paris, West Central Africa, Belgrade, Bratislava, Budapest, Ljubljana, Prague, Sarajevo, Skopje, Warsaw, Zagreb, Windhoek",
       minutesDiff: 60,
@@ -72,7 +72,7 @@ function updateGoogleForm() {
   const listItem = form.addListItem();
   listItem.setTitle("What time zone are you in?");
   sleep(1000);
-  listItem.setChoiceValues(timezones.map(tz => tz.shortString+" - "+tz.label));
+  listItem.setChoiceValues(timezones.map(tz => tz.shortString + " - " + tz.label));
 
   console.log("Creata domanda per selezionare la timezone");
 
@@ -84,8 +84,8 @@ function updateGoogleForm() {
     const pgBreakItem = form.addPageBreakItem()
     pgBreakItem.setTitle(mainTitle);
     pgBreakItem.setHelpText(
-      "Please select the times (at which the focus group will begin) in which you are available.\n" +
-      "Keep in mind that the focus group will last between 1 hour and 2 hours."
+      "Please select all the times (at which the focus group will begin) in which you are available.\n" +
+      "Keep in mind that the focus group will last between 1 hour and 2 hours. \n" + "All times are shown in your selected time zone."
     );
     pgBreakItem.setGoToPage(FormApp.PageNavigationType.SUBMIT);
 
@@ -109,7 +109,7 @@ function updateGoogleForm() {
       console.log("Creo domanda per la tz " + timezone.shortString + " e la data " + dateString + " con " + choices.length + " opzioni");
       const checkItem = form.addCheckboxItem();
       sleep(500);
-      checkItem.setTitle("When would you be available to participate in a focus group on " + dateString + "? (you can select multiple options) [" + timezone.shortString + "]");
+      checkItem.setTitle("On " + dateString + ", I am available to participate in a focus group beginning at: ");
       sleep(1000);
       checkItem.setChoiceValues(choices);
       console.log("Domanda creata");
@@ -147,7 +147,6 @@ function prepareData(sheetData) {
   const dateIndex = headers.indexOf(kdDate);
   const timeFromIndex = headers.indexOf(kdTimeFrom);
   const personIndex = headers.indexOf(keyPersone);
-
   sheetData.forEach(row => {
     if (row[dateIndex] === '')
       return;
