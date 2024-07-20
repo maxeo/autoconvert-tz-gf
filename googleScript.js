@@ -337,8 +337,8 @@ function updateGoogleForm() {
 
 
   //per test ne prendo solo 5
-  timezones = timezones.slice(0, 4);
-  timezones.push({label: "(GMT+02:00) Central European Time – Rome", minutesDiff: 120, shortString: "GMT+02:00"});
+  // timezones = timezones.slice(0, 4);
+  // timezones.push({label: "(GMT+02:00) Central European Time – Rome", minutesDiff: 120, shortString: "GMT+02:00"});
   const listItem = form.addListItem();
   listItem.setTitle("What time zone are you in?");
   sleep(1000);
