@@ -366,7 +366,7 @@ function updateGoogleForm() {
 
     const jsTz = getCurrentAdjTime();
 
-    const refTimezoneStr = "(GMT+02:00) Central European Time – Rome";
+    const refTimezoneStr = "Central European Time – Rome";
     const refTimezone = timezones.find(tz => tz.label === refTimezoneStr);
     //va convertita la data nel fuso orario corrente
     const localDates = data.map(d => new Date(d.DateInfo.getTime() + timezone.minutesDiff * 60000 + refTimezone.minutesDiff * 60000));
