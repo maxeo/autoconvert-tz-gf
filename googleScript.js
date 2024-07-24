@@ -91,8 +91,8 @@ function updateGoogleForm() {
 
     const jsTz = getCurrentAdjTime();
 
-    const refTimezoneStr = "Central European Time – Rome";
-    const refTimezone = timezones.find(tz => tz.label === refTimezoneStr);
+    const refTimezoneStr = "GMT+02:00";
+    const refTimezone = timezones.find(tz => tz.shortString === refTimezoneStr);
     //va convertita la data nel fuso orario corrente
     const localDates = data.map(d => new Date(d.DateInfo.getTime() + timezone.minutesDiff * 60000 + refTimezone.minutesDiff * 60000));
     //tolgo l'ora alla data
