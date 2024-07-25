@@ -94,7 +94,7 @@ function updateGoogleForm() {
     const refTimezoneStr = "GMT+02:00";
     const refTimezone = timezones.find(tz => tz.shortString === refTimezoneStr);
     //va convertita la data nel fuso orario corrente
-    const localDates = data.map(d => new Date(d.DateInfo.getTime() + timezone.minutesDiff * 60000 + refTimezone.minutesDiff * 60000));
+    const localDates = data.map(d => new Date(d.DateInfo.getTime() + timezone.minutesDiff * 60000 - refTimezone.minutesDiff * 60000));
     //tolgo l'ora alla data
     const dateOnlyDistinct = [...new Set(localDates.map(d => d.toLocaleDateString('en-US')))];
     for (const date of dateOnlyDistinct) {
@@ -105,6 +105,7 @@ function updateGoogleForm() {
       const choices = localDates
         .filter(d => d.toLocaleDateString('en-US') === date)
         .map(d => d.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'}));
+      choices.push("I'm not available in any of this times");
       console.log("Creo domanda per la tz " + timezone.shortString + " e la data " + dateString + " con " + choices.length + " opzioni");
       const checkItem = form.addCheckboxItem();
       sleep(500);
