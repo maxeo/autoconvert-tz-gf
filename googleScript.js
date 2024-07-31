@@ -31,29 +31,49 @@ function updateGoogleForm() {
     {label: "Mountain Time, Galapagos Time, Easter Island Time", minutesDiff: -360, shortString: "GMT-06:00"},
     {label: "Central Time, Acre Time, Colombia Time, Eastern Time, Ecuador Time, Peru Standard Time", minutesDiff: -300, shortString: "GMT-05:00"},
     {label: "Atlantic Time, Eastern Time, Amazon Time, Bolivia Time, Chile Time, Cuba Time, Guyana Time, Paraguay Time, Venezuela Time", minutesDiff: -240, shortString: "GMT-04:00"},
-    {label: "Argentina Time, Brasilia Time,Chile Time, Falkland Islands Time, French Guiana Time, Paraguay Time, Rothera Time, Suriname Time, Uruguay Time, West Greenland Time", minutesDiff: -180, shortString: "GMT-03:00"},
+    {
+      label: "Argentina Time, Brasilia Time,Chile Time, Falkland Islands Time, French Guiana Time, Paraguay Time, Rothera Time, Suriname Time, Uruguay Time, West Greenland Time",
+      minutesDiff: -180,
+      shortString: "GMT-03:00"
+    },
     {label: "South Georgia Time", minutesDiff: -120, shortString: "GMT-02:00"},
     {label: "Azores Time", minutesDiff: -60, shortString: "GMT-01:00"},
     {label: "Universal Time Coordinated, Greenwich Time", minutesDiff: 0, shortString: "GMT+00:00"},
     {label: "Western European Time, United Kingdom Time, Ireland Time, Morocco Time, West Africa Standard Time", minutesDiff: 60, shortString: "GMT+01:00"},
     {label: "Central European Time, Central Africa Time, South Africa Time, Troll Time", minutesDiff: 120, shortString: "GMT+02:00"},
-    {label: "Eastern European Time, Arabian Time, East Africa Time, Famagusta Time, Israel Time, Jordan Time, Kirov Time, Moscow Time, Syria Time, Türkiye Time, Volgograd Time", minutesDiff: 180, shortString: "GMT+03:00"},
+    {
+      label: "Eastern European Time, Arabian Time, East Africa Time, Famagusta Time, Israel Time, Jordan Time, Kirov Time, Moscow Time, Syria Time, Türkiye Time, Volgograd Time",
+      minutesDiff: 180,
+      shortString: "GMT+03:00"
+    },
     {label: "Iran Time", minutesDiff: 210, shortString: "GMT+03:30"},
     {label: "Armenia Time, Astrakhan Time, Azerbaijan Time, Georgia Time, Gulf Time, Mauritius Time, Samara Time, Saratov Time, Ulyanovsk Time", minutesDiff: 240, shortString: "GMT+04:00"},
     {label: "Afghanistan Time", minutesDiff: 270, shortString: "GMT+04:30"},
-    {label: "Pakistan Time, Maldives Time, Mawson Time, Tajikistan Time, Turkmenistan Time, Uzbekistan Time, Vostok Time, West Kazakhstan Time, Yekaterinburg Time", minutesDiff: 300, shortString: "GMT+05:00"},
+    {
+      label: "Pakistan Time, Maldives Time, Mawson Time, Tajikistan Time, Turkmenistan Time, Uzbekistan Time, Vostok Time, West Kazakhstan Time, Yekaterinburg Time",
+      minutesDiff: 300,
+      shortString: "GMT+05:00"
+    },
     {label: "India Standard Time", minutesDiff: 330, shortString: "GMT+05:30"},
     {label: "Nepal Time", minutesDiff: 345, shortString: "GMT+05:45"},
     {label: "Bangladesh Time, Bhutan Time, Indian Ocean Time, Kyrgyzstan Time, Omsk Time, Urumqi Time", minutesDiff: 360, shortString: "GMT+06:00"},
     {label: "Myanmar Time", minutesDiff: 390, shortString: "GMT+06:30"},
     {label: "Barnaul Time, Indochina Time, Davis Time, Hovd Time, Indochina Time, Krasnoyarsk Time, Novosibirsk Time, Tomsk Time, Western Indonesia Time", minutesDiff: 420, shortString: "GMT+07:00"},
-    {label: "Singapore Time, Philippine Time, Australian Western Time, Malaysia Time, Central Indonesia Time, China Time, Hong Kong Time, Irkutsk Time, Taipei Time, Ulaanbaatar Standard Time, Ulaanbaatar Time", minutesDiff: 480, shortString: "GMT+08:00"},
+    {
+      label: "Singapore Time, Philippine Time, Australian Western Time, Malaysia Time, Central Indonesia Time, China Time, Hong Kong Time, Irkutsk Time, Taipei Time, Ulaanbaatar Standard Time, Ulaanbaatar Time",
+      minutesDiff: 480,
+      shortString: "GMT+08:00"
+    },
     {label: "Australian Central Western Time", minutesDiff: 525, shortString: "GMT+08:45"},
     {label: "Japan Time, Korean Time, Eastern Indonesia Time, East Timor Time, Palau Time, Yakutsk Time", minutesDiff: 540, shortString: "GMT+09:00"},
     {label: "Central Australia Time", minutesDiff: 570, shortString: "GMT+09:30"},
     {label: "Eastern Australia Time, ChamorroTime, Papua New Guinea Time, Vladivostok Standard Time", minutesDiff: 600, shortString: "GMT+10:00"},
     {label: "Lord Howe Time", minutesDiff: 630, shortString: "GMT+10:30"},
-    {label: "Bougainville Time, Kosrae Time, Magadan Time, New Caledonia Time, Norfolk Island Time, Solomon Islands Time, Sakhalin Time, Srednekolymsk Time, Vanuatu Time", minutesDiff: 660, shortString: "GMT+11:00"},
+    {
+      label: "Bougainville Time, Kosrae Time, Magadan Time, New Caledonia Time, Norfolk Island Time, Solomon Islands Time, Sakhalin Time, Srednekolymsk Time, Vanuatu Time",
+      minutesDiff: 660,
+      shortString: "GMT+11:00"
+    },
     {label: "New Zealand Time, Fiji Time, Anadyr Time, Gilbert Islands Time, Marshall Islands Time, Nauru Time, Petropavlovsk-Kamchatski Time", minutesDiff: 720, shortString: "GMT+12:00"},
     {label: "Chatham Time", minutesDiff: 765, shortString: "GMT+12:45"},
     {label: "Apia Time, Phoenix Islands Time, Tokelau Time, Tonga Time", minutesDiff: 780, shortString: "GMT+13:00"},
@@ -76,9 +96,12 @@ function updateGoogleForm() {
 
   let uniqueTimezones = [...new Map(timezones.map(item => [item.minutesDiff, item])).values()];
   //creo una nuova sezione per ogni timezones
-  for (const timezone of uniqueTimezones) {
+  for (let i = 0; i < uniqueTimezones.length; i++) {
+    const timezone = uniqueTimezones[i];
     const mainTitle = timezone.shortString;
     const pgBreakItem = form.addPageBreakItem()
+    console.log("Creo una nuova sezione per la timezone " + mainTitle + " domanda " + i + "/" + uniqueTimezones.length);
+
     pgBreakItem.setTitle(mainTitle);
     pgBreakItem.setHelpText(
       "Please select all the times (at which the focus group will begin) in which you are available.\n" +
@@ -112,6 +135,8 @@ function updateGoogleForm() {
       checkItem.setTitle("On " + dateString + ", I am available to participate in a focus group beginning at: ");
       sleep(1000);
       checkItem.setChoiceValues(choices);
+      checkItem.setRequired(true);
+
       console.log("Domanda creata");
     }
 
@@ -120,7 +145,9 @@ function updateGoogleForm() {
 
   console.log("Creo associazioni tra le domande e le pagine");
   // Crea una lista di scelte con le rispettive opzioni di navigazione
+  let index = 0;
   const choicesWithNavigation = timezones.map(tz => {
+    console.log("Creo associazione " + index++ + "/" + timezones.length);
     const title = tz.shortString + " - " + tz.label;
     const page = timezoneToPgBreakMap.get(tz.shortString);
     sleep(300);
