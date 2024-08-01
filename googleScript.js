@@ -128,7 +128,7 @@ function updateGoogleForm() {
       const choices = localDates
         .filter(d => d.toLocaleDateString('en-US') === date)
         .map(d => d.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'}));
-      choices.push("I'm not available in any of this times");
+      choices.push("I'm not available at any of these times");
       console.log("Creo domanda per la tz " + timezone.shortString + " e la data " + dateString + " con " + choices.length + " opzioni");
       const checkItem = form.addCheckboxItem();
       sleep(500);
